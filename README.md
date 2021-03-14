@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./src/assets/ignite.png" height="200px" />
+  <img src="./src/assets/ignite.png" width="100%" />
 </div>
 
 <div align="center">
