@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./src/assets/ignite.png" height="200px" alt="Be the hero"/>
+  <img src="./src/assets/ignite.png" height="200px" />
 </div>
 
 <div align="center">
@@ -33,11 +33,11 @@
 ## Preview
 
 <div align="center">
-  <img src="./src/assets/print1.png" height="200px" alt="Be the hero"/>
+  <img src="./src/assets/print1.png" height="200px" />
 </div>
 
 <div align="center">
-  <img src="./src/assets/print2.png" height="200px" alt="Be the hero"/>
+  <img src="./src/assets/print2.png" height="200px" />
 </div>
 
 
