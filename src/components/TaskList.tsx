@@ -10,20 +10,63 @@ interface Task {
   isComplete: boolean;
 }
 
+interface Error {
+  type:string;
+  message:string
+}
+
 export function TaskList() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTaskTitle, setNewTaskTitle] = useState('');
+  const [error, setError] = useState<Error[]>([])
 
   function handleCreateNewTask() {
-    // Crie uma nova task com um id random, não permita criar caso o título seja vazio.
-  }
+   if(!newTaskTitle){
+     setError([])
+      const newError = {
+        type:'error',
+        message:'Título da atívidade de preenchimento obrigatório'
+      }
+      setError(oldState => [...oldState, newError])
+      return
+   }
+   const TaskExist = tasks.filter(item => item.title ===newTaskTitle)
+
+   
+   if(TaskExist.length >0){
+     setError([])
+    const newError = {
+      type:'error',
+      message:'Já existe uma atividade com este título'
+    }
+    setError(oldState => [...oldState, newError])
+
+     return;
+   }
+
+   const newTask = {
+     id:Math.random(),
+     title: newTaskTitle,
+     isComplete: false
+   }
+   setError([])
+   setTasks(oldState =>[...oldState,newTask])
+   setNewTaskTitle('')
+
+   } 
+  
 
   function handleToggleTaskCompletion(id: number) {
     // Altere entre `true` ou `false` o campo `isComplete` de uma task com dado ID
+    const newTasks = tasks.map(item => item.id === id ? {...item, isComplete:!item.isComplete}:item)
+    setTasks(newTasks)
+    
   }
 
   function handleRemoveTask(id: number) {
     // Remova uma task da listagem pelo ID
+    const filteredTasks = tasks.filter(item =>item.id !== id)
+    setTasks(filteredTasks)
   }
 
   return (
@@ -45,6 +88,7 @@ export function TaskList() {
       </header>
 
       <main>
+        {!!error &&<div className={error[0]?.type}>{error[0]?.message}</div>}
         <ul>
           {tasks.map(task => (
             <li key={task.id}>
